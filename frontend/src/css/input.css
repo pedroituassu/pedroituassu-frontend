@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@layer components {
+    .skill {
+        @apply flex flex-row gap-2 p-2.5 border border-white rounded-xl cursor-default hover:border-red-500 hover:text-red-500 transition-colors duration-100;
+    }
+}
