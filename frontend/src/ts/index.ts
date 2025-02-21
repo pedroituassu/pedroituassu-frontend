@@ -1,17 +1,35 @@
-async function getData() {
-    const url = "http://localhost:8080/experience";
+const url = "http://localhost:8080/experience";
+
+type Experience = {
+  id: string,
+  enterprise: string,
+  role: string,
+  location: string,
+  startDate: Date,
+  endDate: Date,
+  description: string[]
+}
+
+async function getExperiences(url: string) {
     try {
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
   
-      const json = await response.json();
-      console.log(json);
+      const experiences = await response.json();
+      
     } catch (error) {
       console.error(error.message);
     }
   }
   
 
-getData();   
+async function displayExperiences(experiences: Experience[]) {
+  experiences.forEach(experience => {
+    console.log(experience)
+  })
+}
+
+const experiences = getExperiences(url)
+displayExperiences(experiences)
