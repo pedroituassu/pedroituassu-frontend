@@ -518,11 +518,29 @@
   }
 }
 @layer utilities {
+  .collapse {
+    visibility: collapse;
+  }
+  .relative {
+    position: relative;
+  }
   .my-3 {
     margin-block: calc(var(--spacing) * 3);
   }
+  .block {
+    display: block;
+  }
   .flex {
     display: flex;
+  }
+  .inline-flex {
+    display: inline-flex;
+  }
+  .list-item {
+    display: list-item;
+  }
+  .table {
+    display: table;
   }
   .h-full {
     height: 100%;
@@ -536,14 +554,14 @@
   .w-full {
     width: 100%;
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .transform {
     transform: var(--tw-rotate-x) var(--tw-rotate-y) var(--tw-rotate-z) var(--tw-skew-x) var(--tw-skew-y);
   }
-  .list-inside {
-    list-style-position: inside;
-  }
-  .list-disc {
-    list-style-type: disc;
+  .resize {
+    resize: both;
   }
   .flex-col {
     flex-direction: column;
@@ -563,8 +581,9 @@
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
-  .gap-5 {
-    gap: calc(var(--spacing) * 5);
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
   }
   .bg-slate-50 {
     background-color: var(--color-slate-50);
@@ -601,6 +620,9 @@
   .text-nowrap {
     text-wrap: nowrap;
   }
+  .text-wrap {
+    text-wrap: wrap;
+  }
   .text-blue-600 {
     color: var(--color-blue-600);
   }
@@ -615,6 +637,13 @@
   }
   .text-yellow-300 {
     color: var(--color-yellow-300);
+  }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
   }
   .transition-colors {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
@@ -684,16 +713,59 @@
       border-color: var(--color-slate-50);
     }
   }
+  .section-link {
+    text-wrap: nowrap;
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 100ms;
+    transition-duration: 100ms;
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-red-500);
+      }
+    }
+  }
+  .my-link {
+    display: flex;
+    flex-direction: row;
+    gap: calc(var(--spacing) * 3);
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+    --tw-duration: 100ms;
+    transition-duration: 100ms;
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-red-500);
+      }
+    }
+  }
   .experience {
     margin-block: calc(var(--spacing) * 3);
-    border-radius: var(--radius-xl);
-    border-style: var(--tw-border-style);
-    border-width: 1px;
+    border-block-style: var(--tw-border-style);
+    border-block-width: 1px;
     border-color: var(--color-slate-950);
     padding: calc(var(--spacing) * 2.5);
     @media (prefers-color-scheme: dark) {
       border-color: var(--color-slate-50);
     }
+  }
+  .experience-title {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+  .experience-subtitle {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .experience-description {
+    list-style-position: inside;
+    list-style-type: disc;
+    gap: calc(var(--spacing) * 5);
+    text-align: justify;
   }
 }
 @keyframes spin {
@@ -748,6 +820,11 @@
   initial-value: skewY(0);
 }
 @property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-outline-style {
   syntax: "*";
   inherits: false;
   initial-value: solid;
