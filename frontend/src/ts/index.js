@@ -35,9 +35,42 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var url = "http://localhost:8080/experience";
+var experiencesElement = document.getElementById("experiences");
+function addExperience(experience) {
+    var title = document.createElement("h2");
+    title.classList.add("experience-title");
+    title.textContent = experience.role + " @ " + experience.enterprise;
+    var subtitle = document.createElement("span");
+    subtitle.classList.add("experience-subtitle");
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var date = new Date(experience.startDate);
+    var startDate = months[date.getMonth()] + " " + date.getFullYear();
+    var endDate;
+    if (experience.endDate != null) {
+        date = new Date(experience.endDate);
+        endDate = months[date.getMonth()] + " " + date.getFullYear();
+    }
+    else {
+        endDate = "Present";
+    }
+    subtitle.textContent = startDate + " - " + endDate;
+    var description = document.createElement("ul");
+    description.classList.add("experience-description");
+    experience.description.forEach(function (item) {
+        var descriptionItem = document.createElement("li");
+        descriptionItem.textContent = item;
+        description.appendChild(descriptionItem);
+    });
+    var section = document.createElement("section");
+    section.classList.add("experience");
+    section.appendChild(title);
+    section.appendChild(subtitle);
+    section.appendChild(description);
+    experiencesElement === null || experiencesElement === void 0 ? void 0 : experiencesElement.appendChild(section);
+}
 function getExperiences(url) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, experiences_1, error_1;
+        var response, experiences, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -50,8 +83,11 @@ function getExperiences(url) {
                     }
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    experiences_1 = _a.sent();
-                    return [2 /*return*/, experiences_1];
+                    experiences = _a.sent();
+                    experiences.forEach(function (experience) {
+                        addExperience(experience);
+                    });
+                    return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
                     console.error(error_1.message);
@@ -61,15 +97,4 @@ function getExperiences(url) {
         });
     });
 }
-function displayExperiences(experiences) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            experiences.forEach(function (experience) {
-                console.log(experience);
-            });
-            return [2 /*return*/];
-        });
-    });
-}
-var experiences = getExperiences(url);
-displayExperiences(experiences);
+getExperiences(url);

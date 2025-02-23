@@ -14,7 +14,7 @@
     }
 
     .experience {
-        @apply my-3 border-y-1 border-slate-950 dark:border-slate-50 p-2.5
+        @apply my-3 border-y-1 border-red-500 p-2.5
     }
 
     .experience-title {
@@ -26,6 +26,22 @@
     }
 
     .experience-description {
+        @apply text-justify list-disc list-inside gap-5
+    }
+
+    .project {
+        @apply my-3 border-y-1 border-red-500 p-2.5
+    }
+
+    .project-title {
+        @apply text-3xl
+    }
+
+    .project-subtitle {
+        @apply text-2xl
+    }
+
+    .project-description {
         @apply text-justify list-disc list-inside gap-5
     }
 }
