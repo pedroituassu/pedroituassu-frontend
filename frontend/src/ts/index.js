@@ -34,15 +34,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var url = "http://localhost:8080/experience";
-var experiencesElement = document.getElementById("experiences");
-function addExperience(experience) {
+var url = "http://localhost:8080/";
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+function createExperience(experience) {
+    var experiencesElement = document.getElementById("experiences");
     var title = document.createElement("h2");
     title.classList.add("experience-title");
     title.textContent = experience.role + " @ " + experience.enterprise;
     var subtitle = document.createElement("span");
     subtitle.classList.add("experience-subtitle");
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var date = new Date(experience.startDate);
     var startDate = months[date.getMonth()] + " " + date.getFullYear();
     var endDate;
@@ -68,14 +68,14 @@ function addExperience(experience) {
     section.appendChild(description);
     experiencesElement === null || experiencesElement === void 0 ? void 0 : experiencesElement.appendChild(section);
 }
-function getExperiences(url) {
+function addExperiences() {
     return __awaiter(this, void 0, void 0, function () {
         var response, experiences, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch(url)];
+                    return [4 /*yield*/, fetch(url + "experience")];
                 case 1:
                     response = _a.sent();
                     if (!response.ok) {
@@ -85,7 +85,7 @@ function getExperiences(url) {
                 case 2:
                     experiences = _a.sent();
                     experiences.forEach(function (experience) {
-                        addExperience(experience);
+                        createExperience(experience);
                     });
                     return [3 /*break*/, 4];
                 case 3:
@@ -97,4 +97,61 @@ function getExperiences(url) {
         });
     });
 }
-getExperiences(url);
+function createProject(project) {
+    var projectsElement = document.getElementById("projects");
+    var title = document.createElement("h2");
+    title.classList.add("project-title");
+    title.innerHTML = project.name + '<span class="text-red-500">|</span>';
+    project.technologies.forEach(function (tech) {
+        title.innerHTML = title.innerHTML + tech + ', ';
+    });
+    var subtitle = document.createElement("span");
+    subtitle.classList.add("project-subtitle");
+    var date = new Date(project.date);
+    var sdate = months[date.getMonth()] + " " + date.getFullYear();
+    subtitle.innerHTML = sdate + '<span class="text-red-500">|</span> <a class="text-xl hover:text-red-500 transition-colors" href=' + project.url + 'target="_blank">src</a></span>';
+    var description = document.createElement("ul");
+    description.classList.add("project-description");
+    project.description.forEach(function (item) {
+        var descriptionItem = document.createElement("li");
+        descriptionItem.textContent = item;
+        description.appendChild(descriptionItem);
+    });
+    var section = document.createElement("section");
+    section.classList.add("project");
+    section.appendChild(title);
+    section.appendChild(subtitle);
+    section.appendChild(description);
+    projectsElement.appendChild(section);
+}
+function addProjects() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, projects, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch(url + "project")];
+                case 1:
+                    response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error("response status: ".concat(response.status));
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    projects = _a.sent();
+                    projects.forEach(function (project) {
+                        createProject(project);
+                    });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2.message);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
+addExperiences();
+addProjects();
