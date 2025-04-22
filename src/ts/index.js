@@ -75,7 +75,7 @@ function addExperiences() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch(url + "experience")];
+                    return [4 /*yield*/, fetch(url + "experiences")];
                 case 1:
                     response = _a.sent();
                     if (!response.ok) {
@@ -101,15 +101,16 @@ function createProject(project) {
     var projectsElement = document.getElementById("projects");
     var title = document.createElement("h2");
     title.classList.add("project-title");
-    title.innerHTML = project.name + '<span class="text-red-500">|</span>';
+    title.innerHTML = project.name + ' <span class="text-red-500">|</span> ';
     project.technologies.forEach(function (tech) {
         title.innerHTML = title.innerHTML + tech + ', ';
     });
+    title.innerHTML = title.innerHTML.slice(0, -2);
     var subtitle = document.createElement("span");
     subtitle.classList.add("project-subtitle");
     var date = new Date(project.date);
     var sdate = months[date.getMonth()] + " " + date.getFullYear();
-    subtitle.innerHTML = sdate + '<span class="text-red-500">|</span> <a class="text-xl hover:text-red-500 transition-colors" href=' + project.url + 'target="_blank">src</a></span>';
+    subtitle.innerHTML = sdate + ' <span class="text-red-500">|</span> <a class="text-xl hover:text-red-500 transition-colors" href=' + project.url + ' target="_blank">src</a></span>';
     var description = document.createElement("ul");
     description.classList.add("project-description");
     project.description.forEach(function (item) {
@@ -131,7 +132,7 @@ function addProjects() {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, fetch(url + "project")];
+                    return [4 /*yield*/, fetch(url + "projects")];
                 case 1:
                     response = _a.sent();
                     if (!response.ok) {

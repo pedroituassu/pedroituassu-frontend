@@ -61,7 +61,7 @@ function createExperience(experience: Experience) {
 
 async function addExperiences() {
   try {
-    const response = await fetch(url + "experience");
+    const response = await fetch(url + "experiences");
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
@@ -81,16 +81,17 @@ function createProject(project: Project) {
   const projectsElement: HTMLElement | null = document.getElementById("projects")
   const title: HTMLElement = document.createElement("h2")
   title.classList.add("project-title")
-  title.innerHTML = project.name + '<span class="text-red-500">|</span>'
+  title.innerHTML = project.name + ' <span class="text-red-500">|</span> '
   project.technologies.forEach(tech => {
     title.innerHTML = title.innerHTML + tech + ', '
   })
+  title.innerHTML = title.innerHTML.slice(0, -2)
 
   const subtitle: HTMLElement = document.createElement("span")
   subtitle.classList.add("project-subtitle")
   const date: Date = new Date(project.date)
   const sdate: string = months[date.getMonth()] + " " + date.getFullYear()
-  subtitle.innerHTML = sdate + '<span class="text-red-500">|</span> <a class="text-xl hover:text-red-500 transition-colors" href=' + project.url + 'target="_blank">src</a></span>'
+  subtitle.innerHTML = sdate + ' <span class="text-red-500">|</span> <a class="text-xl hover:text-red-500 transition-colors" href=' + project.url + ' target="_blank">src</a></span>'
 
   const description: HTMLElement = document.createElement("ul")
   description.classList.add("project-description")
@@ -111,7 +112,7 @@ function createProject(project: Project) {
 
 async function addProjects() {
   try {
-    const response = await fetch(url + "project")
+    const response = await fetch(url + "projects")
     if (!response.ok) {
       throw new Error(`response status: ${response.status}`)
     }
