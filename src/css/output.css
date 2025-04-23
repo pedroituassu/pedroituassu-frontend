@@ -518,6 +518,15 @@
   }
 }
 @layer utilities {
+  .invisible {
+    visibility: hidden;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .fixed {
+    position: fixed;
+  }
   .my-3 {
     margin-block: calc(var(--spacing) * 3);
   }
@@ -638,19 +647,14 @@
       flex-direction: column;
     }
   }
-  .sm\:flex-row {
-    @media (width >= 40rem) {
-      flex-direction: row;
-    }
-  }
-  .sm\:justify-between {
-    @media (width >= 40rem) {
-      justify-content: space-between;
-    }
-  }
   .md\:text-nowrap {
     @media (width >= 48rem) {
       text-wrap: nowrap;
+    }
+  }
+  .xl\:invisible {
+    @media (width >= 80rem) {
+      visibility: hidden;
     }
   }
   .xl\:flex {
@@ -668,14 +672,9 @@
       flex-direction: row;
     }
   }
-  .xl\:justify-center {
+  .xl\:gap-6 {
     @media (width >= 80rem) {
-      justify-content: center;
-    }
-  }
-  .xl\:px-10 {
-    @media (width >= 80rem) {
-      padding-inline: calc(var(--spacing) * 10);
+      gap: calc(var(--spacing) * 6);
     }
   }
   .dark\:bg-slate-950 {
