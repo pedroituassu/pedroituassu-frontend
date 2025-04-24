@@ -1,4 +1,4 @@
-const url: string = "http://localhost:8080/";
+const url: string = "http://164.152.36.131:8080/";
 const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
 
 type Experience = {
@@ -22,12 +22,16 @@ type Project = {
 
 function createExperience(experience: Experience) {
   const experiencesElement: HTMLElement | null = document.getElementById("experiences")
-  const title: HTMLElement = document.createElement("h2")
-  title.classList.add("experience-title")
-  title.textContent = experience.role + " @ " + experience.enterprise
+  const enterprise: HTMLElement = document.createElement("h2")
+  enterprise.classList.add("experience-enterprise")
+  enterprise.textContent = experience.enterprise
 
-  const subtitle: HTMLElement = document.createElement("span")
-  subtitle.classList.add("experience-subtitle")
+  const roleTitle: HTMLElement = document.createElement("h3")
+  roleTitle.classList.add("experience-role-title")
+  roleTitle.textContent = experience.role
+
+  const dates: HTMLElement = document.createElement("span")
+  dates.classList.add("experience-role-dates")
   var date: Date = new Date(experience.startDate)
   const startDate: string = months[date.getMonth()] + " " + date.getFullYear()
 
@@ -38,24 +42,29 @@ function createExperience(experience: Experience) {
   } else {
     endDate = "Present"
   }
-  subtitle.textContent = startDate + " - " + endDate
+  dates.textContent = startDate + " - " + endDate
 
-  const description: HTMLElement = document.createElement("ul")
-  description.classList.add("experience-description")
+  const roleDescription: HTMLElement = document.createElement("ul")
+  roleDescription.classList.add("experience-role-description")
 
   experience.description.forEach(item => {
     const descriptionItem: HTMLElement = document.createElement("li")
     descriptionItem.textContent = item
-    description.appendChild(descriptionItem)
+    roleDescription.appendChild(descriptionItem)
   })
+
+  const role: HTMLElement = document.createElement("section")
+  role.classList.add("experience-role")
+  role.appendChild(roleTitle)
+  role.appendChild(dates)
+  role.appendChild(roleDescription)
 
   const section: HTMLElement = document.createElement("section")
   section.classList.add("experience")
 
-  section.appendChild(title)
-  section.appendChild(subtitle)
-  section.appendChild(description)
-
+  section.appendChild(enterprise)
+  section.appendChild(role)
+  
   experiencesElement?.appendChild(section)
 }
 

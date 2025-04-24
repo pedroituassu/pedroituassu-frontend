@@ -14,18 +14,26 @@
     }
 
     .experience {
-        @apply my-3 border-y-1 border-red-500 p-2.5
+        @apply my-3 border-l-1 border-t-1 border-red-500 p-2.5
     }
 
-    .experience-title {
+    .experience-enterprise {
         @apply text-3xl
     }
 
-    .experience-subtitle {
+    .experience-role {
+        @apply py-1 border-t-1 border-red-500
+    }
+
+    .experience-role-title {
+        @apply text-3xl
+    }
+
+    .experience-role-dates {
         @apply text-2xl
     }
 
-    .experience-description {
+    .experience-role-description {
         @apply text-justify list-disc list-inside gap-5
     }
 

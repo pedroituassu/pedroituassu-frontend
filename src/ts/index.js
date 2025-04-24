@@ -34,15 +34,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var url = "http://localhost:8080/";
+var url = "http://164.152.36.131:8080/";
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 function createExperience(experience) {
     var experiencesElement = document.getElementById("experiences");
-    var title = document.createElement("h2");
-    title.classList.add("experience-title");
-    title.textContent = experience.role + " @ " + experience.enterprise;
-    var subtitle = document.createElement("span");
-    subtitle.classList.add("experience-subtitle");
+    var enterprise = document.createElement("h2");
+    enterprise.classList.add("experience-enterprise");
+    enterprise.textContent = experience.enterprise;
+    var roleTitle = document.createElement("h3");
+    roleTitle.classList.add("experience-role-title");
+    roleTitle.textContent = experience.role;
+    var dates = document.createElement("span");
+    dates.classList.add("experience-role-dates");
     var date = new Date(experience.startDate);
     var startDate = months[date.getMonth()] + " " + date.getFullYear();
     var endDate;
@@ -53,19 +56,23 @@ function createExperience(experience) {
     else {
         endDate = "Present";
     }
-    subtitle.textContent = startDate + " - " + endDate;
-    var description = document.createElement("ul");
-    description.classList.add("experience-description");
+    dates.textContent = startDate + " - " + endDate;
+    var roleDescription = document.createElement("ul");
+    roleDescription.classList.add("experience-role-description");
     experience.description.forEach(function (item) {
         var descriptionItem = document.createElement("li");
         descriptionItem.textContent = item;
-        description.appendChild(descriptionItem);
+        roleDescription.appendChild(descriptionItem);
     });
+    var role = document.createElement("section");
+    role.classList.add("experience-role");
+    role.appendChild(roleTitle);
+    role.appendChild(dates);
+    role.appendChild(roleDescription);
     var section = document.createElement("section");
     section.classList.add("experience");
-    section.appendChild(title);
-    section.appendChild(subtitle);
-    section.appendChild(description);
+    section.appendChild(enterprise);
+    section.appendChild(role);
     experiencesElement === null || experiencesElement === void 0 ? void 0 : experiencesElement.appendChild(section);
 }
 function addExperiences() {
