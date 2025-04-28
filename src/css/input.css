@@ -38,15 +38,15 @@
     }
 
     .project {
-        @apply my-3 border-y-1 border-red-500 p-2.5
+        @apply my-3 border-l-1 border-t-1 border-red-500 p-2.5
     }
 
     .project-title {
-        @apply text-3xl
+        @apply text-3xl border-b-1 border-red-500 pb-1 mb-1
     }
 
-    .project-subtitle {
-        @apply text-2xl
+    .project-subtitles {
+        @apply text-2xl block
     }
 
     .project-description {
