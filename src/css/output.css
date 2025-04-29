@@ -793,7 +793,6 @@
     list-style-position: inside;
     list-style-type: disc;
     gap: calc(var(--spacing) * 5);
-    text-align: justify;
   }
   .project {
     margin-block: calc(var(--spacing) * 3);
@@ -822,7 +821,6 @@
     list-style-position: inside;
     list-style-type: disc;
     gap: calc(var(--spacing) * 5);
-    text-align: justify;
   }
 }
 @keyframes spin {

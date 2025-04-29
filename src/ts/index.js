@@ -108,16 +108,18 @@ function createProject(project) {
     var projectsElement = document.getElementById("projects");
     var title = document.createElement("h2");
     title.classList.add("project-title");
-    title.innerHTML = project.name + ' <span class="text-red-500">|</span> ';
+    title.innerHTML = project.name + ' <span class="text-red-500">|</span> ' + '<a class="hover:text-red-500 transition-colors href=' + project.url + ' target="_blank">src</a>';
+    var technologies = document.createElement("span");
+    technologies.classList.add("project-subtitles");
     project.technologies.forEach(function (tech) {
-        title.innerHTML = title.innerHTML + tech + ', ';
+        technologies.innerHTML = technologies.innerHTML + tech + ', ';
     });
-    title.innerHTML = title.innerHTML.slice(0, -2);
-    var subtitle = document.createElement("span");
-    subtitle.classList.add("project-subtitle");
+    technologies.innerHTML = technologies.innerHTML.slice(0, -2);
+    var projectDate = document.createElement("span");
+    projectDate.classList.add("project-subtitles");
     var date = new Date(project.date);
     var sdate = months[date.getMonth()] + " " + date.getFullYear();
-    subtitle.innerHTML = sdate + ' <span class="text-red-500">|</span> <a class="text-xl hover:text-red-500 transition-colors" href=' + project.url + ' target="_blank">src</a></span>';
+    projectDate.innerHTML = sdate;
     var description = document.createElement("ul");
     description.classList.add("project-description");
     project.description.forEach(function (item) {
@@ -128,7 +130,8 @@ function createProject(project) {
     var section = document.createElement("section");
     section.classList.add("project");
     section.appendChild(title);
-    section.appendChild(subtitle);
+    section.appendChild(technologies);
+    section.appendChild(projectDate);
     section.appendChild(description);
     projectsElement.appendChild(section);
 }

@@ -34,7 +34,7 @@
     }
 
     .experience-role-description {
-        @apply text-justify list-disc list-inside gap-5
+        @apply list-disc list-inside gap-5
     }
 
     .project {
@@ -50,6 +50,6 @@
     }
 
     .project-description {
-        @apply text-justify list-disc list-inside gap-5
+        @apply list-disc list-inside gap-5
     }
 }

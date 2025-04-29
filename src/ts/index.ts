@@ -90,17 +90,20 @@ function createProject(project: Project) {
   const projectsElement: HTMLElement | null = document.getElementById("projects")
   const title: HTMLElement = document.createElement("h2")
   title.classList.add("project-title")
-  title.innerHTML = project.name + ' <span class="text-red-500">|</span> '
+  title.innerHTML = project.name + ' <span class="text-red-500">|</span> ' + '<a class="hover:text-red-500 transition-colors href=' + project.url + ' target="_blank">src</a>'
+  
+  const technologies: HTMLElement = document.createElement("span")
+  technologies.classList.add("project-subtitles")
   project.technologies.forEach(tech => {
-    title.innerHTML = title.innerHTML + tech + ', '
+    technologies.innerHTML = technologies.innerHTML + tech + ', '
   })
-  title.innerHTML = title.innerHTML.slice(0, -2)
+  technologies.innerHTML = technologies.innerHTML.slice(0, -2);
 
-  const subtitle: HTMLElement = document.createElement("span")
-  subtitle.classList.add("project-subtitle")
+  const projectDate: HTMLElement = document.createElement("span");
+  projectDate.classList.add("project-subtitles")
   const date: Date = new Date(project.date)
-  const sdate: string = months[date.getMonth()] + " " + date.getFullYear()
-  subtitle.innerHTML = sdate + ' <span class="text-red-500">|</span> <a class="text-xl hover:text-red-500 transition-colors" href=' + project.url + ' target="_blank">src</a></span>'
+  const sdate: string = months[date.getMonth()] + " " + date.getFullYear();
+  projectDate.innerHTML = sdate;
 
   const description: HTMLElement = document.createElement("ul")
   description.classList.add("project-description")
@@ -113,7 +116,8 @@ function createProject(project: Project) {
   const section: HTMLElement = document.createElement("section")
   section.classList.add("project")
   section.appendChild(title)
-  section.appendChild(subtitle)
+  section.appendChild(technologies)
+  section.appendChild(projectDate)
   section.appendChild(description)
 
   projectsElement.appendChild(section)
