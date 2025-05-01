@@ -524,9 +524,6 @@
   .my-3 {
     margin-block: calc(var(--spacing) * 3);
   }
-  .block {
-    display: block;
-  }
   .flex {
     display: flex;
   }
@@ -569,31 +566,14 @@
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
-  .border-t-1 {
-    border-top-style: var(--tw-border-style);
-    border-top-width: 1px;
-  }
-  .border-l-1 {
-    border-left-style: var(--tw-border-style);
-    border-left-width: 1px;
-  }
-  .border-red-500 {
-    border-color: var(--color-red-500);
-  }
   .bg-slate-50 {
     background-color: var(--color-slate-50);
-  }
-  .p-2\.5 {
-    padding: calc(var(--spacing) * 2.5);
   }
   .p-10 {
     padding: calc(var(--spacing) * 10);
   }
   .px-10 {
     padding-inline: calc(var(--spacing) * 10);
-  }
-  .py-1 {
-    padding-block: calc(var(--spacing) * 1);
   }
   .text-justify {
     text-align: justify;
@@ -761,6 +741,44 @@
         color: var(--color-red-500);
       }
     }
+  }
+  .academicEducation {
+    margin-block: calc(var(--spacing) * 3);
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+    border-left-style: var(--tw-border-style);
+    border-left-width: 1px;
+    border-color: var(--color-red-500);
+    padding: calc(var(--spacing) * 2.5);
+  }
+  .academicEducation-title {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+  .academicEducation-subtitle {
+    display: block;
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .academicEducation-role {
+    border-top-style: var(--tw-border-style);
+    border-top-width: 1px;
+    border-color: var(--color-red-500);
+    padding-block: calc(var(--spacing) * 1);
+  }
+  .academicEducation-role-title {
+    font-size: var(--text-3xl);
+    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  }
+  .academicEducation-role-dates {
+    display: block;
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+  }
+  .academicEducation-role-description {
+    list-style-position: inside;
+    list-style-type: disc;
+    gap: calc(var(--spacing) * 5);
   }
   .experience {
     margin-block: calc(var(--spacing) * 3);

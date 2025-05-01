@@ -13,6 +13,34 @@
         @apply flex flex-row gap-3 text-2xl hover:text-red-500 transition-colors duration-100
     }
 
+    .academicEducation {
+        @apply my-3 border-l-1 border-t-1 border-red-500 p-2.5
+    }
+
+    .academicEducation-title {
+        @apply text-3xl
+    }
+
+    .academicEducation-subtitle {
+        @apply text-2xl block
+    }
+
+    .academicEducation-role {
+        @apply py-1 border-t-1 border-red-500
+    }
+
+    .academicEducation-role-title {
+        @apply text-3xl
+    }
+
+    .academicEducation-role-dates {
+        @apply text-2xl block
+    }
+
+    .academicEducation-role-description {
+        @apply list-disc list-inside gap-5
+    }
+
     .experience {
         @apply my-3 border-l-1 border-t-1 border-red-500 p-2.5
     }

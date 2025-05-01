@@ -41,38 +41,44 @@ function createExperience(experience) {
     var enterprise = document.createElement("h2");
     enterprise.classList.add("experience-enterprise");
     enterprise.textContent = experience.enterprise;
-    var roleTitle = document.createElement("h3");
-    roleTitle.classList.add("experience-role-title");
-    roleTitle.textContent = experience.role;
-    var dates = document.createElement("span");
-    dates.classList.add("experience-role-dates");
-    var date = new Date(experience.startDate);
-    var startDate = months[date.getMonth()] + " " + date.getFullYear();
-    var endDate;
-    if (experience.endDate != null) {
-        date = new Date(experience.endDate);
-        endDate = months[date.getMonth()] + " " + date.getFullYear();
-    }
-    else {
-        endDate = "Present";
-    }
-    dates.textContent = startDate + " - " + endDate;
-    var roleDescription = document.createElement("ul");
-    roleDescription.classList.add("experience-role-description");
-    experience.description.forEach(function (item) {
-        var descriptionItem = document.createElement("li");
-        descriptionItem.textContent = item;
-        roleDescription.appendChild(descriptionItem);
-    });
-    var role = document.createElement("section");
-    role.classList.add("experience-role");
-    role.appendChild(roleTitle);
-    role.appendChild(dates);
-    role.appendChild(roleDescription);
     var section = document.createElement("section");
     section.classList.add("experience");
     section.appendChild(enterprise);
-    section.appendChild(role);
+    experience.roles.forEach(function (role) {
+        var roleTitle = document.createElement("h3");
+        roleTitle.classList.add("experience-role-title");
+        roleTitle.textContent = role.name;
+        var location = document.createElement("span");
+        location.classList.add("academicEducation-role-dates");
+        location.textContent = role.location;
+        var dates = document.createElement("span");
+        dates.classList.add("experience-role-dates");
+        var date = new Date(role.startDate);
+        var startDate = months[date.getMonth()] + " " + date.getFullYear();
+        var endDate;
+        if (role.endDate != null) {
+            date = new Date(role.endDate);
+            endDate = months[date.getMonth()] + " " + date.getFullYear();
+        }
+        else {
+            endDate = "Present";
+        }
+        dates.textContent = startDate + " - " + endDate;
+        var roleDescription = document.createElement("ul");
+        roleDescription.classList.add("experience-role-description");
+        role.description.forEach(function (item) {
+            var descriptionItem = document.createElement("li");
+            descriptionItem.textContent = item;
+            roleDescription.appendChild(descriptionItem);
+        });
+        var roleElement = document.createElement("section");
+        roleElement.classList.add("experience-role");
+        roleElement.appendChild(roleTitle);
+        roleElement.appendChild(location);
+        roleElement.appendChild(dates);
+        roleElement.appendChild(roleDescription);
+        section.appendChild(roleElement);
+    });
     experiencesElement === null || experiencesElement === void 0 ? void 0 : experiencesElement.appendChild(section);
 }
 function addExperiences() {
@@ -104,11 +110,107 @@ function addExperiences() {
         });
     });
 }
+function createAcademicEducation(academicEducation) {
+    var academicEducationsElement = document.getElementById("academicEducations");
+    var title = document.createElement("h2");
+    title.classList.add("academicEducation-title");
+    title.textContent = academicEducation.title;
+    var institute = document.createElement("span");
+    institute.classList.add("academicEducation-subtitle");
+    institute.textContent = academicEducation.institute;
+    var location = document.createElement("span");
+    location.classList.add("academicEducation-subtitle");
+    location.textContent = academicEducation.location;
+    var dates = document.createElement("span");
+    dates.classList.add("academicEducation-subtitle");
+    var date = new Date(academicEducation.startDate);
+    var startDate = months[date.getMonth()] + " " + date.getFullYear();
+    var endDate;
+    if (academicEducation.endDate != null) {
+        date = new Date(academicEducation.endDate);
+        endDate = months[date.getMonth()] + " " + date.getFullYear();
+    }
+    else {
+        endDate = "Present";
+    }
+    dates.textContent = startDate + " - " + endDate;
+    var section = document.createElement("section");
+    section.classList.add("academicEducation");
+    section.appendChild(title);
+    section.appendChild(institute);
+    section.appendChild(location);
+    section.appendChild(dates);
+    academicEducation.roles.forEach(function (role) {
+        var roleTitle = document.createElement("h3");
+        roleTitle.classList.add("experience-role-title");
+        roleTitle.textContent = role.name;
+        var location = document.createElement("span");
+        location.classList.add("academicEducation-role-dates");
+        location.textContent = role.location;
+        var dates = document.createElement("span");
+        dates.classList.add("experience-role-dates");
+        var date = new Date(role.startDate);
+        var startDate = months[date.getMonth()] + " " + date.getFullYear();
+        var endDate;
+        if (role.endDate != null) {
+            date = new Date(role.endDate);
+            endDate = months[date.getMonth()] + " " + date.getFullYear();
+        }
+        else {
+            endDate = "Present";
+        }
+        dates.textContent = startDate + " - " + endDate;
+        var roleDescription = document.createElement("ul");
+        roleDescription.classList.add("experience-role-description");
+        role.description.forEach(function (item) {
+            var descriptionItem = document.createElement("li");
+            descriptionItem.textContent = item;
+            roleDescription.appendChild(descriptionItem);
+        });
+        var roleElement = document.createElement("section");
+        roleElement.classList.add("experience-role");
+        roleElement.appendChild(roleTitle);
+        roleElement.appendChild(location);
+        roleElement.appendChild(dates);
+        roleElement.appendChild(roleDescription);
+        section.appendChild(roleElement);
+    });
+    academicEducationsElement === null || academicEducationsElement === void 0 ? void 0 : academicEducationsElement.appendChild(section);
+}
+function addAcademicEducations() {
+    return __awaiter(this, void 0, void 0, function () {
+        var response, academicEducations, error_2;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, fetch(url + "academic_educations")];
+                case 1:
+                    response = _a.sent();
+                    if (!response.ok) {
+                        throw new Error("Response status: ".concat(response.status));
+                    }
+                    return [4 /*yield*/, response.json()];
+                case 2:
+                    academicEducations = _a.sent();
+                    academicEducations.forEach(function (academicEducation) {
+                        createAcademicEducation(academicEducation);
+                    });
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_2 = _a.sent();
+                    console.error(error_2.message);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+}
 function createProject(project) {
     var projectsElement = document.getElementById("projects");
     var title = document.createElement("h2");
     title.classList.add("project-title");
-    title.innerHTML = project.name + ' <span class="text-red-500">|</span> ' + '<a class="hover:text-red-500 transition-colors href=' + project.url + ' target="_blank">src</a>';
+    title.innerHTML = project.name + ' <span class="text-red-500">|</span> ' + '<a class="hover:text-red-500 transition-colors" href=' + project.url + ' target="_blank">src</a>';
     var technologies = document.createElement("span");
     technologies.classList.add("project-subtitles");
     project.technologies.forEach(function (tech) {
@@ -137,7 +239,7 @@ function createProject(project) {
 }
 function addProjects() {
     return __awaiter(this, void 0, void 0, function () {
-        var response, projects, error_2;
+        var response, projects, error_3;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -156,13 +258,14 @@ function addProjects() {
                     });
                     return [3 /*break*/, 4];
                 case 3:
-                    error_2 = _a.sent();
-                    console.error(error_2.message);
+                    error_3 = _a.sent();
+                    console.error(error_3.message);
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
+addAcademicEducations();
 addExperiences();
 addProjects();

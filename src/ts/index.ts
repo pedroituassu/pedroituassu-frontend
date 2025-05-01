@@ -1,14 +1,27 @@
 const url: string = "http://164.152.36.131:8080/";
 const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
 
-type Experience = {
-  id: string,
-  enterprise: string,
-  role: string,
+type Role = {
+  name: string,
   location: string,
   startDate: string,
   endDate: string,
   description: string[]
+}
+
+type AcademicEducation = {
+  institute: string,
+  title: string,
+  location: string,
+  startDate: string,
+  endDate: string,
+  roles: Role[]
+}
+
+type Experience = {
+  id: string,
+  enterprise: string,
+  roles: Role[]
 }
 
 type Project = {
@@ -26,44 +39,52 @@ function createExperience(experience: Experience) {
   enterprise.classList.add("experience-enterprise")
   enterprise.textContent = experience.enterprise
 
-  const roleTitle: HTMLElement = document.createElement("h3")
-  roleTitle.classList.add("experience-role-title")
-  roleTitle.textContent = experience.role
-
-  const dates: HTMLElement = document.createElement("span")
-  dates.classList.add("experience-role-dates")
-  var date: Date = new Date(experience.startDate)
-  const startDate: string = months[date.getMonth()] + " " + date.getFullYear()
-
-  var endDate: string;
-  if (experience.endDate != null) {
-    date = new Date(experience.endDate)
-    endDate = months[date.getMonth()] + " " + date.getFullYear()
-  } else {
-    endDate = "Present"
-  }
-  dates.textContent = startDate + " - " + endDate
-
-  const roleDescription: HTMLElement = document.createElement("ul")
-  roleDescription.classList.add("experience-role-description")
-
-  experience.description.forEach(item => {
-    const descriptionItem: HTMLElement = document.createElement("li")
-    descriptionItem.textContent = item
-    roleDescription.appendChild(descriptionItem)
-  })
-
-  const role: HTMLElement = document.createElement("section")
-  role.classList.add("experience-role")
-  role.appendChild(roleTitle)
-  role.appendChild(dates)
-  role.appendChild(roleDescription)
-
   const section: HTMLElement = document.createElement("section")
   section.classList.add("experience")
 
   section.appendChild(enterprise)
-  section.appendChild(role)
+
+  experience.roles.forEach(role => {
+    const roleTitle: HTMLElement = document.createElement("h3")
+    roleTitle.classList.add("experience-role-title")
+    roleTitle.textContent = role.name
+
+    const location: HTMLElement = document.createElement("span")
+    location.classList.add("academicEducation-role-dates")
+    location.textContent = role.location
+
+    const dates: HTMLElement = document.createElement("span")
+    dates.classList.add("experience-role-dates")
+    var date: Date = new Date(role.startDate)
+    const startDate: string = months[date.getMonth()] + " " + date.getFullYear()
+
+    var endDate: string;
+    if (role.endDate != null) {
+      date = new Date(role.endDate)
+      endDate = months[date.getMonth()] + " " + date.getFullYear()
+    } else {
+      endDate = "Present"
+    }
+    dates.textContent = startDate + " - " + endDate
+
+    const roleDescription: HTMLElement = document.createElement("ul")
+    roleDescription.classList.add("experience-role-description")
+
+    role.description.forEach(item => {
+      const descriptionItem: HTMLElement = document.createElement("li")
+      descriptionItem.textContent = item
+      roleDescription.appendChild(descriptionItem)
+    })
+
+    const roleElement: HTMLElement = document.createElement("section")
+    roleElement.classList.add("experience-role")
+    roleElement.appendChild(roleTitle)
+    roleElement.appendChild(location)
+    roleElement.appendChild(dates)
+    roleElement.appendChild(roleDescription)
+    
+    section.appendChild(roleElement)
+  });
   
   experiencesElement?.appendChild(section)
 }
@@ -86,11 +107,110 @@ async function addExperiences() {
   }
 }
 
+function createAcademicEducation(academicEducation: AcademicEducation) {
+  const academicEducationsElement: HTMLElement | null = document.getElementById("academicEducations")
+
+  const title: HTMLElement = document.createElement("h2")
+  title.classList.add("academicEducation-title")
+  title.textContent = academicEducation.title
+
+  const institute: HTMLElement = document.createElement("span")
+  institute.classList.add("academicEducation-subtitle")
+  institute.textContent = academicEducation.institute
+
+  const location: HTMLElement = document.createElement("span")
+  location.classList.add("academicEducation-subtitle")
+  location.textContent = academicEducation.location
+
+  const dates: HTMLElement = document.createElement("span")
+  dates.classList.add("academicEducation-subtitle")
+  var date: Date = new Date(academicEducation.startDate)
+  const startDate: string = months[date.getMonth()] + " " + date.getFullYear()
+
+  var endDate: string;
+  if (academicEducation.endDate != null) {
+    date = new Date(academicEducation.endDate)
+    endDate = months[date.getMonth()] + " " + date.getFullYear()
+  } else {
+    endDate = "Present"
+  }
+  dates.textContent = startDate + " - " + endDate
+
+  const section: HTMLElement = document.createElement("section")
+  section.classList.add("academicEducation")
+  section.appendChild(title)
+  section.appendChild(institute)
+  section.appendChild(location)
+  section.appendChild(dates)
+
+  academicEducation.roles.forEach(role => {
+    const roleTitle: HTMLElement = document.createElement("h3")
+    roleTitle.classList.add("experience-role-title")
+    roleTitle.textContent = role.name
+
+    const location: HTMLElement = document.createElement("span")
+    location.classList.add("academicEducation-role-dates")
+    location.textContent = role.location
+
+    const dates: HTMLElement = document.createElement("span")
+    dates.classList.add("experience-role-dates")
+    var date: Date = new Date(role.startDate)
+    const startDate: string = months[date.getMonth()] + " " + date.getFullYear()
+
+    var endDate: string;
+    if (role.endDate != null) {
+      date = new Date(role.endDate)
+      endDate = months[date.getMonth()] + " " + date.getFullYear()
+    } else {
+      endDate = "Present"
+    }
+    dates.textContent = startDate + " - " + endDate
+
+    const roleDescription: HTMLElement = document.createElement("ul")
+    roleDescription.classList.add("experience-role-description")
+
+    role.description.forEach(item => {
+      const descriptionItem: HTMLElement = document.createElement("li")
+      descriptionItem.textContent = item
+      roleDescription.appendChild(descriptionItem)
+    })
+
+    const roleElement: HTMLElement = document.createElement("section")
+    roleElement.classList.add("experience-role")
+    roleElement.appendChild(roleTitle)
+    roleElement.appendChild(location)
+    roleElement.appendChild(dates)
+    roleElement.appendChild(roleDescription)
+    
+    section.appendChild(roleElement)
+  });
+
+  academicEducationsElement?.appendChild(section)
+}
+
+async function addAcademicEducations() {
+  try {
+    const response = await fetch(url + "academic_educations");
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const academicEducations = await response.json() as AcademicEducation[];
+
+    academicEducations.forEach(academicEducation => {
+      createAcademicEducation(academicEducation)
+    })
+
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 function createProject(project: Project) {
   const projectsElement: HTMLElement | null = document.getElementById("projects")
   const title: HTMLElement = document.createElement("h2")
   title.classList.add("project-title")
-  title.innerHTML = project.name + ' <span class="text-red-500">|</span> ' + '<a class="hover:text-red-500 transition-colors href=' + project.url + ' target="_blank">src</a>'
+  title.innerHTML = project.name + ' <span class="text-red-500">|</span> ' + '<a class="hover:text-red-500 transition-colors" href=' + project.url + ' target="_blank">src</a>'
   
   const technologies: HTMLElement = document.createElement("span")
   technologies.classList.add("project-subtitles")
@@ -141,5 +261,6 @@ async function addProjects() {
   }
 }
 
+addAcademicEducations()
 addExperiences()
 addProjects()
