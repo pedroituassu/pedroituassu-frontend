@@ -34,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var url = "http://164.152.36.131:8080/";
+var url = "https://pedroituassu.xyz/";
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 function createExperience(experience) {
     var experiencesElement = document.getElementById("experiences");

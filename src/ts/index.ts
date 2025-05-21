@@ -1,4 +1,4 @@
-const url: string = "http://164.152.36.131:8080/";
+const url: string = "https://pedroituassu.xyz/";
 const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]; 
 
 type Role = {
